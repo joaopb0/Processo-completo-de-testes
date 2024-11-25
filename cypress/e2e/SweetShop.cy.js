@@ -23,8 +23,13 @@ describe('Calcular o valor dos produtos', () => {
       })
   });
 
-  describe('', () => {
-    it('', () => {
-      
+  describe('Deletar um produto do carrinho', () => {
+    it('Exclui o produto do carrinho', () => {
+      cy.visit('https://sweetshop.netlify.app/')
+      cy.contains('Sweets').click()
+      cy.get('a[data-name="Chocolate Cups"]').click();
+      cy.contains('Basket').click()
+      cy.get('a.small[href="javascript:removeItem(1);"]').click();
+      cy.get('a.small[href="javascript:removeItem(1);"]').should('not.exist')
     })
   })

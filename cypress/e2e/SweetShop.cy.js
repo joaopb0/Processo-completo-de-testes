@@ -44,3 +44,12 @@ describe('Exibe a imagem dos itens do catalogo', () => {
     })
   })
 })
+
+describe('Verificar o redirecionamento para as redes sociais', () => {
+  it('Redireciona para o Facebook', () => {
+    cy.visit('https://sweetshop.netlify.app/')
+    cy.contains('Login').click()
+    cy.get('img[alt="facebook"]').click();
+    cy.contains('Facebook').should('be.visible')
+  })
+})

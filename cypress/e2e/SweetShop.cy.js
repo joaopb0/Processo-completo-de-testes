@@ -18,18 +18,29 @@ describe('Calcular o valor dos produtos', () => {
     for (let i = 0; i < 5; i++) {
       cy.get('a[data-name="Chocolate Cups"]').click();
     }
-      cy.contains('Basket').click()
-      cy.contains('£5.00').should('be.visible')
-      })
-  });
+    cy.contains('Basket').click()
+    cy.contains('£5.00').should('be.visible')
+  })
+});
 
-  describe('Deletar um produto do carrinho', () => {
-    it('Exclui o produto do carrinho', () => {
-      cy.visit('https://sweetshop.netlify.app/')
-      cy.contains('Sweets').click()
-      cy.get('a[data-name="Chocolate Cups"]').click();
-      cy.contains('Basket').click()
-      cy.get('a.small[href="javascript:removeItem(1);"]').click();
-      cy.get('a.small[href="javascript:removeItem(1);"]').should('not.exist')
+describe('Deletar um produto do carrinho', () => {
+  it('Exclui o produto do carrinho', () => {
+    cy.visit('https://sweetshop.netlify.app/')
+    cy.contains('Sweets').click()
+    cy.get('a[data-name="Chocolate Cups"]').click();
+    cy.contains('Basket').click()
+    cy.get('a.small[href="javascript:removeItem(1);"]').click();
+    cy.get('a.small[href="javascript:removeItem(1);"]').should('not.exist')
+  })
+})
+
+describe('Exibe a imagem dos itens do catalogo', () => {
+  it('Exibe a imagem dos produtos', () => {
+    cy.visit('https://sweetshop.netlify.app/')
+    cy.contains('Sweets').click()
+    cy.get('.card').each(($card) => {
+      cy.wrap($card).find('img').should('have.attr', 'src').and('not.include', 'broken-image.jpg')
+      cy.wrap($card).find('img').should('have.prop', 'naturalWidth').and('be.greaterThan', 0)
     })
   })
+})

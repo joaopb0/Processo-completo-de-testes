@@ -53,3 +53,28 @@ describe('Verificar o redirecionamento para as redes sociais', () => {
     cy.contains('Facebook').should('be.visible')
   })
 })
+
+describe('Teste de validação de checkout', () => {
+  it('Valida o checkout', () => {
+    cy.visit('https://sweetshop.netlify.app/')
+    cy.contains('Sweets').click()
+    cy.get('a[data-name="Chocolate Cups"]').click()
+    cy.contains('Basket').click()
+    cy.get('input#name').eq(0).type('Joao')
+    cy.get('input#name').eq(1).type('Barbosa')
+    cy.get('#email.form-control').clear().type('joao@gmail.com')
+    cy.get('#address.form-control').clear().type('Rua A n° 1')
+    cy.get('#email.form-control').clear().type('joao@gmail.com')
+    cy.get('.custom-select').eq(0).select('United Kingdom');
+    cy.get('.custom-select').eq(1).select('Bristol');
+    cy.get('#email.form-control').clear().type('joao@gmail.com')
+    cy.get('#zip.form-control').clear().type('95959656')
+    cy.get('#cc-name.form-control').clear().type('joao das quantas nao sei o que')
+    cy.get('#cc-number.form-control').clear().type('959565654456313')
+    cy.get('#cc-expiration.form-control').clear().type('29')
+    cy.get('#cc-cvv.form-control').clear().type('656')
+    cy.contains('Continue to checkout').click()
+    cy.get('input#name').eq(0).should('not.have.value', 'Joao')
+    cy.get('input#name').eq(1).should('not.have.value', 'Barbosa')
+  })
+})

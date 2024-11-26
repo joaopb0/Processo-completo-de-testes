@@ -120,8 +120,8 @@ describe('Teste de exibição de historico', () => {
     cy.get('#email.form-control').clear().type('joao@gmail.com')
     cy.get('#address.form-control').clear().type('Rua A n° 1')
     cy.get('#email.form-control').clear().type('joao@gmail.com')
-    cy.get('.custom-select').eq(0).select('United Kingdom');
-    cy.get('.custom-select').eq(1).select('Bristol');
+    cy.get('.custom-select').eq(0).select('United Kingdom')
+    cy.get('.custom-select').eq(1).select('Bristol')
     cy.get('#email.form-control').clear().type('joao@gmail.com')
     cy.get('#zip.form-control').clear().type('95959656')
     cy.get('#cc-name.form-control').clear().type('joao das quantas nao sei o que')
@@ -138,10 +138,10 @@ describe('Teste de ordenação do historico', () => {
   it('Ordena o historico', () => {
     cy.visit('https://sweetshop.netlify.app/')
     cy.visit('https://sweetshop.netlify.app/00efc23d-b605-4f31-b97b-6bb276de447e.html')
-    cy.contains('Order Number').should('be.visible').and('not.be.disabled').click();
-    cy.contains('Date Ordered').should('be.visible').and('not.be.disabled').click();
-    cy.contains('Order Description').should('be.visible').and('not.be.disabled').click();
-    cy.contains('Order Total').should('be.visible').and('not.be.disabled').click();
+    cy.contains('Order Number').should('be.visible').and('not.be.disabled').click()
+    cy.contains('Date Ordered').should('be.visible').and('not.be.disabled').click()
+    cy.contains('Order Description').should('be.visible').and('not.be.disabled').click()
+    cy.contains('Order Total').should('be.visible').and('not.be.disabled').click()
   })
 })
 
@@ -197,5 +197,12 @@ describe('Verifica se o redirecionamento para home', () => {
     cy.visit('https://sweetshop.netlify.app/login')
     cy.contains('Sweet Shop').click()
     cy.contains('Welcome to the sweet shop!').should('be.visible')
+  })
+})
+
+describe('Verifica se a imagem da pagina inicial é visivel', () => {
+  it('Verifica visibilidade da imagem', () => {
+    cy.visit('https://sweetshop.netlify.app/')
+    cy.get('img[src="img/sale.gif"]').should('have.prop', 'naturalWidth').and('be.greaterThan', 0)
   })
 })

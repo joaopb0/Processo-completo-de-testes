@@ -190,3 +190,12 @@ describe('Clica em About e verifica se o texto existe', () => {
     cy.contains('Sweet Shop is a project created to help demonstrate some of the great features of the Chrome DevTools which may be of use to people who help test web applications. Sweet Shop encompasses common issues found in real-world web applications!').should('be.visible')
   })
 })
+
+describe('Verifica se o redirecionamento para home', () => {
+  it('Redireciona para a home', () => {
+    cy.visit('https://sweetshop.netlify.app/')
+    cy.visit('https://sweetshop.netlify.app/login')
+    cy.contains('Sweet Shop').click()
+    cy.contains('Welcome to the sweet shop!').should('be.visible')
+  })
+})

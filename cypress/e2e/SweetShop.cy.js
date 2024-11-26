@@ -144,3 +144,16 @@ describe('Teste de ordenação do historico', () => {
     cy.contains('Order Total').should('be.visible').and('not.be.disabled').click();
   })
 })
+
+describe('Teste de acessar o perfil', () => {
+  it('Acessa o perfil do usuario', () => {
+    cy.visit('https://sweetshop.netlify.app/')
+    cy.visit('https://sweetshop.netlify.app/login')
+    cy.get('#exampleInputEmail.form-control').clear().type('test@user.com')
+    cy.get('#exampleInputPassword.form-control').clear().type('qwerty')
+    cy.get('.btn.btn-primary').click()
+    cy.contains('Welcome back test@user.com').should('be.visible')
+    cy.contains('test@user.com').click()
+    cy.contains('Welcome back test@user.com').should('not.be.visible')
+  })
+})

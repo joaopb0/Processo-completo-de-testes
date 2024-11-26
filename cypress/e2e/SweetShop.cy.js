@@ -167,3 +167,17 @@ describe('Teste de adicionar produtos ao carrinho', () => {
     cy.contains('Chocolate Cups').should('be.visible')
   })
 })
+
+describe('Teste de deletar todos os produtos do carrinho', () => {
+  it('Deleta todos os produtos do carrinho', () => {
+    cy.visit('https://sweetshop.netlify.app/')
+    cy.contains('Sweets').click()
+    cy.get('a[data-name="Chocolate Cups"]').click()
+    cy.get('a[data-name="Sherbert Straws"]').click()
+    cy.contains('Basket').click()
+    cy.contains('Empty Basket').click()
+    cy.on('window:confirm', () => true)
+    cy.contains('Sherbert Straws').should('not.exist')
+    cy.contains('Chocolate Cups').should('not.exist')
+  })
+})

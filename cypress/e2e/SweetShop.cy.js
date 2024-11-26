@@ -181,3 +181,12 @@ describe('Teste de deletar todos os produtos do carrinho', () => {
     cy.contains('Chocolate Cups').should('not.exist')
   })
 })
+
+describe('Clica em About e verifica se o texto existe', () => {
+  it('Verifica se o texto existe', () => {
+    cy.visit('https://sweetshop.netlify.app/')
+    cy.contains('About').click()
+    cy.contains('An intentionally broken web application to help demonstrate Chrome DevTools.').should('be.visible')
+    cy.contains('Sweet Shop is a project created to help demonstrate some of the great features of the Chrome DevTools which may be of use to people who help test web applications. Sweet Shop encompasses common issues found in real-world web applications!').should('be.visible')
+  })
+})

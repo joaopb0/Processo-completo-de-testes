@@ -157,3 +157,13 @@ describe('Teste de acessar o perfil', () => {
     cy.contains('Welcome back test@user.com').should('not.be.visible')
   })
 })
+
+describe('Teste de adicionar produtos ao carrinho', () => {
+  it('Adiciona produtos ao carrinho', () => {
+    cy.visit('https://sweetshop.netlify.app/')
+    cy.contains('Sweets').click()
+    cy.get('a[data-name="Chocolate Cups"]').click()
+    cy.contains('Basket').click()
+    cy.contains('Chocolate Cups').should('be.visible')
+  })
+})

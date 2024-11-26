@@ -133,3 +133,14 @@ describe('Teste de exibição de historico', () => {
     cy.contains('#4').should('be.visible')
   })
 })
+
+describe('Teste de ordenação do historico', () => {
+  it('Ordena o historico', () => {
+    cy.visit('https://sweetshop.netlify.app/')
+    cy.visit('https://sweetshop.netlify.app/00efc23d-b605-4f31-b97b-6bb276de447e.html')
+    cy.contains('Order Number').should('be.visible').and('not.be.disabled').click();
+    cy.contains('Date Ordered').should('be.visible').and('not.be.disabled').click();
+    cy.contains('Order Description').should('be.visible').and('not.be.disabled').click();
+    cy.contains('Order Total').should('be.visible').and('not.be.disabled').click();
+  })
+})
